@@ -1,0 +1,194 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 220 30% 96%;
+    --foreground: 220 40% 10%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 40% 10%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 40% 10%;
+
+    --primary: 220 60% 12%;
+    --primary-foreground: 45 60% 72%;
+
+    --secondary: 45 55% 65%;
+    --secondary-foreground: 220 60% 12%;
+
+    --muted: 220 20% 92%;
+    --muted-foreground: 220 15% 46%;
+
+    --accent: 45 70% 55%;
+    --accent-foreground: 220 60% 8%;
+
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 20% 88%;
+    --input: 220 20% 88%;
+    --ring: 45 55% 65%;
+
+    --radius: 0.75rem;
+
+    --gold: 45 70% 55%;
+    --gold-light: 45 60% 72%;
+    --gold-dark: 45 80% 42%;
+    --navy: 220 60% 12%;
+    --navy-light: 220 45% 22%;
+    --navy-muted: 220 30% 35%;
+    --sky: 200 80% 55%;
+    --sky-light: 200 70% 92%;
+    --success: 152 60% 42%;
+    --success-foreground: 0 0% 100%;
+    --warning: 38 92% 50%;
+    --warning-foreground: 0 0% 100%;
+
+    --sidebar-background: 220 60% 12%;
+    --sidebar-foreground: 0 0% 95%;
+    --sidebar-primary: 45 55% 65%;
+    --sidebar-primary-foreground: 220 60% 12%;
+    --sidebar-accent: 220 45% 22%;
+    --sidebar-accent-foreground: 0 0% 95%;
+    --sidebar-border: 220 45% 22%;
+    --sidebar-ring: 45 55% 65%;
+
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'Inter', sans-serif;
+
+    --gradient-navy: linear-gradient(135deg, hsl(220 60% 12%), hsl(220 45% 22%));
+    --gradient-gold: linear-gradient(135deg, hsl(45 70% 55%), hsl(45 60% 72%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 60% 8%), hsl(220 50% 18%), hsl(220 40% 28%));
+    --gradient-sky: linear-gradient(180deg, hsl(200 80% 55% / 0.1), transparent);
+
+    --shadow-card: 0 4px 24px -4px hsl(220 60% 12% / 0.08);
+    --shadow-elevated: 0 12px 40px -8px hsl(220 60% 12% / 0.15);
+    --shadow-gold: 0 4px 20px -4px hsl(45 70% 55% / 0.3);
+  }
+
+  .dark {
+    --background: 220 50% 6%;
+    --foreground: 220 10% 92%;
+    --card: 220 50% 10%;
+    --card-foreground: 220 10% 92%;
+    --popover: 220 50% 10%;
+    --popover-foreground: 220 10% 92%;
+    --primary: 45 55% 65%;
+    --primary-foreground: 220 60% 12%;
+    --secondary: 220 45% 22%;
+    --secondary-foreground: 220 10% 92%;
+    --muted: 220 40% 15%;
+    --muted-foreground: 220 15% 60%;
+    --accent: 45 70% 55%;
+    --accent-foreground: 220 60% 8%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 40% 18%;
+    --input: 220 40% 18%;
+    --ring: 45 55% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+
+    /* NEW: smooth page feel */
+    transition: all 0.3s ease-in-out;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+
+  .airline-card {
+    @apply bg-card rounded-xl border border-border p-6;
+    box-shadow: var(--shadow-card);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .airline-card:hover {
+    box-shadow: var(--shadow-elevated);
+    transform: translateY(-3px);
+  }
+
+  .airline-card-selected {
+    @apply border-2;
+    border-color: hsl(var(--gold));
+    box-shadow: var(--shadow-gold);
+  }
+
+  .airline-gradient-bg {
+    background: var(--gradient-hero);
+  }
+
+  .airline-gold-text {
+    color: hsl(var(--gold));
+  }
+
+  .airline-gold-bg {
+    background: var(--gradient-gold);
+    color: hsl(var(--navy));
+  }
+
+  .airline-navy-text {
+    color: hsl(var(--navy));
+  }
+
+  .airline-badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold tracking-wide uppercase;
+  }
+
+  .airline-badge-gold {
+    background: hsl(var(--gold) / 0.15);
+    color: hsl(var(--gold-dark));
+  }
+
+  .airline-badge-sky {
+    background: hsl(var(--sky) / 0.15);
+    color: hsl(var(--sky));
+  }
+
+  .airline-badge-success {
+    background: hsl(var(--success) / 0.15);
+    color: hsl(var(--success));
+  }
+
+  .airline-badge-warning {
+    background: hsl(var(--warning) / 0.15);
+    color: hsl(var(--warning));
+  }
+
+  .airline-input {
+    @apply w-full rounded-lg border border-input bg-card px-4 py-3 text-sm transition-colors;
+  }
+
+  .airline-input:focus {
+    @apply outline-none ring-2;
+    ring-color: hsl(var(--gold) / 0.5);
+    border-color: hsl(var(--gold));
+  }
+
+  /* NEW: professional footer styling */
+  .app-footer {
+    background: var(--gradient-navy);
+    color: white;
+    padding: 14px;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 0.5px;
+  }
+}
